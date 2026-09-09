@@ -1,25 +1,16 @@
 
 local Globals = getgenv()
-Globals.AutoMedic = false
-Globals.AutoSkip = false
-Globals.AutoReady = false
-Globals.AutoChain = false
-Globals.AutoGatling = false
-Globals.AutoDJ = false
-Globals.AutoNecro = false
-Globals.AutoRejoin = false
-Globals.AutoRestart = false
-Globals.AutoMercenary = false
-Globals.AutoMilitary = false
-Globals.AntiLag = false
-Globals.Disable3DRendering = false
-Globals.NoRecoil = false
-Globals.AutoReset = false
-Globals.ClaimRewards = false
-Globals.PathVisuals = false
-Globals.AutoReset = false
+Globals.AutoMedic = true
+Globals.AutoReady = true
+Globals.AutoChain = true
+Globals.AutoGatling = true
+Globals.AutoDJ = true
+Globals.AutoNecro = true
+Globals.AutoRejoin = true
+Globals.AutoMercenary = true
+Globals.AutoReset = true
 
-
+ local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
 TDS:Loadout("Trapper", "Medic", "Mercenary Base", "Gatling Gun", "Tesla")
 TDS:Mode("Trial")
