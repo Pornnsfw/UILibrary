@@ -1,16 +1,25 @@
 
+local Globals = getgenv()
+Globals.AutoMedic = false
+Globals.AutoSkip = false
+Globals.AutoReady = false
+Globals.AutoChain = false
+Globals.AutoGatling = false
+Globals.AutoDJ = false
+Globals.AutoNecro = false
+Globals.AutoRejoin = false
+Globals.AutoRestart = false
+Globals.AutoMercenary = false
+Globals.AutoMilitary = false
+Globals.AntiLag = false
+Globals.Disable3DRendering = false
+Globals.NoRecoil = false
+Globals.AutoReset = false
+Globals.ClaimRewards = false
+Globals.PathVisuals = false
+Globals.AutoReset = false
 
 
-getgenv().AutoMedic = true
-getgenv().AutoMercenary = true
-getgenv().AutoDJ  = true
-getgenv().AutoGatling = true
-
-getgenv().AutoSkip = false
-getgenv().AutoReady = false
-getgenv().AutoRejoin = true
-getgenv().AutoRestart = false
-getgenv().Gatlify = false
 
 TDS:Loadout("Trapper", "Medic", "Mercenary Base", "Gatling Gun", "Tesla")
 TDS:Mode("Trial")
