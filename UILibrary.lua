@@ -193,6 +193,7 @@ local DefaultSettings = {
     NoRecoil = false,
     AutoMedic = false,
 	AutoReset = false,
+	AutoBack = false,
 	PrivateCode = "",
 }
 
@@ -2058,6 +2059,38 @@ local function StartAutoResetWatcher()
     end)
 end
 
+local AutoBackRunning = false
+local function StartAutoBack()
+    if AutoBackRunning or not Globals.AutoBack then return end
+    AutoBackRunning = true
+
+    task.spawn(function()
+        while Globals.AutoBack and GameState == "GAME" do
+            task.wait(1)
+            pcall(function()
+                local rewardsGui = PlayerGui:FindFirstChild("ReactGameNewRewards")
+                local frame = rewardsGui and rewardsGui:FindFirstChild("Frame")
+                local gameOver = frame and frame:FindFirstChild("gameOver")
+                
+                if gameOver and gameOver.Visible then
+                    local stateReplicators = ReplicatedStorage:FindFirstChild("StateReplicators")
+                    local gameStateReplicator = stateReplicators and stateReplicators:FindFirstChild("GameStateReplicator")
+                    
+                    if gameStateReplicator then
+                        local health = gameStateReplicator:GetAttribute("Health")
+                        if health ~= nil and health > 0 then
+                            task.wait(2)
+                            TDS:Rejoin()
+                            task.wait(10)
+                        end
+                    end
+                end
+            end)
+        end
+        AutoBackRunning = false
+    end)
+end
+
 StartAutoResetWatcher()
 
 task.spawn(function()
@@ -2106,6 +2139,10 @@ task.spawn(function()
 
         if Globals.AutoMedic and not AutoMedicRunning then
             StartMedicChain()
+        end
+		
+		if Globals.AutoBack and not AutoBackRunning then
+            StartAutoBack()
         end
 
         task.wait(1)
