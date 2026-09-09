@@ -192,6 +192,7 @@ local DefaultSettings = {
     Disable3DRendering = false,
     NoRecoil = false,
     AutoMedic = false,
+	AutoReset = false,
 	PrivateCode = "",
 }
 
@@ -247,7 +248,6 @@ function TDS:ResetAllStates()
     if Logger and Logger.Clear then
         pcall(function()
             Logger:Clear()
-            --("Restarting strategy...")
         end)
     end
 end
@@ -568,7 +568,6 @@ local function RejoinMatch()
     local res
 
     if Globals.PrivateCode and Globals.PrivateCode ~= "" and not IsMobile then
-        --("Private server code detected. Returning to private lobby...")
         SmartTeleportToLobby()
         task.wait(9e9)
         return
@@ -698,13 +697,11 @@ local function CastMapVote(MapId, PosVec)
     local TargetMap = MapId or "Simplicity"
     local TargetPos = PosVec or Vector3.new(0,0,0)
     RemoteEvent:FireServer("LobbyVoting", "Vote", TargetMap, TargetPos)
-    --("Cast map vote: " .. TargetMap)
 end
 
 local function LobbyReadyUp()
     pcall(function()
         RemoteEvent:FireServer("LobbyVoting", "Ready")
-        --("Lobby ready up sent")
     end)
 end
 
@@ -758,7 +755,6 @@ local function CastModifierVote(ModsTable)
     if next(SelectedMods) then
         pcall(function()
             BulkModifiers:InvokeServer(SelectedMods)
-            --("Successfully casted modifier votes.")
         end)
     end
 end
@@ -854,7 +850,6 @@ local function GetCurrentWave()
 end
 
 local function DoPlaceTower(TName, TPos)
-    --("Placing tower: " .. TName)
     while true do
         local ok, res = pcall(function()
             return RemoteFunc:InvokeServer("Troops", "Place", {
@@ -1158,7 +1153,6 @@ function TDS:Loadout(...)
                 repeat
                     local ok = pcall(function()
                         remote:FireServer("Inventory", "Equip", "Tower", TowerName)
-                        --("Equipped tower: " .. TowerName)
                         task.wait(0.3)
                     end)
                     if ok then EquipSuccess = true else task.wait(0.2) end
@@ -1219,8 +1213,6 @@ function TDS:VoteSkip(StartWave, EndWave)
                 
                 task.wait(0.5)
             end
-            
-            --("Successfully skipped wave " .. wave)
         end
     end)
 end
@@ -1240,7 +1232,6 @@ function TDS:GameInfo(name, list)
 
     if MarketplaceService:UserOwnsGamePassAsync(LocalPlayer.UserId, 10518590) or (gameStateReplicator and gameStateReplicator:GetAttribute("IsPrivateServer") == true) then
         SelectMapOverride(name, "vip")
-        --("Selected map: " .. name)
         repeat task.wait(1) until PlayerGui:FindFirstChild("ReactUniversalHotbar")
         return true 
     elseif IsMapAvailable(name) then
@@ -1248,7 +1239,6 @@ function TDS:GameInfo(name, list)
         repeat task.wait(1) until PlayerGui:FindFirstChild("ReactUniversalHotbar")
         return true
     else
-        --("Map '" .. name .. "' not available, rejoining...")
         RejoinMatch()
         repeat task.wait(9999) until false
     end
@@ -1324,11 +1314,11 @@ function TDS:Place(TName, px, py, pz, ...)
     table.insert(self.PlacedTowers, NewT)
     return #self.PlacedTowers
 end
+
 function TDS:Upgrade(idx, PId)
     local t = self.PlacedTowers[idx]
     if t then
         DoUpgradeTower(t, PId or 1)
-        --("Upgrading tower index: " .. idx)
         UpgradeHistory[idx] = (UpgradeHistory[idx] or 0) + 1
     end
 end
@@ -1346,7 +1336,6 @@ function TDS:SetTarget(idx, TargetType, ReqWave)
             Troop = t,
             Target = TargetType
         })
-        --("Set target for tower index " .. idx .. " to " .. TargetType)
     end)
 end
 
@@ -1386,7 +1375,6 @@ end
 function TDS:Ability(idx, name, data, loop)
     local t = self.PlacedTowers[idx]
     if not t then return false end
-    --("Activating ability '" .. name .. "' for tower index: " .. idx)
     return DoActivateAbility(t, name, data, loop)
 end
 
@@ -1423,7 +1411,6 @@ end
 function TDS:SetOption(idx, name, val, ReqWave)
     local t = self.PlacedTowers[idx]
     if t then
-        --("Setting option '" .. name .. "' for tower index: " .. idx)
         return DoSetOption(t, name, val, ReqWave)
     end
     return false
@@ -1976,6 +1963,37 @@ local function StartMedicChain()
         if AutoMedicModule and AutoMedicModule.State and AutoMedicModule.State.Running then 
             return 
         end
+
+        local myMedics = {}
+        repeat
+            myMedics = {}
+            local towersFolder = game:GetService("Workspace"):FindFirstChild("Towers")
+            
+            if towersFolder then
+                for _, tower in ipairs(towersFolder:GetChildren()) do
+                    local replicator = tower:FindFirstChild("TowerReplicator")
+                    if replicator then
+                        local ownerId = replicator:GetAttribute("OwnerId")
+                        local ownerName = replicator:GetAttribute("OwnerName")
+                        local towerName = replicator:GetAttribute("Name")
+
+                        local localPlayer = game:GetService("Players").LocalPlayer
+                        local isOwner = (ownerId and ownerId == localPlayer.UserId) or (ownerName and ownerName == localPlayer.Name)
+
+                        if isOwner and towerName and string.lower(towerName) == "medic" then
+                            table.insert(myMedics, tower)
+                        end
+                    end
+                end
+            end
+
+            if #myMedics < 4 then
+                task.wait(1)
+            end
+        until #myMedics >= 4 and Globals.AutoMedic
+
+        if not Globals.AutoMedic then return end
+
         if not AutoMedicModule then
             local success, loadedLib = pcall(function()
                 local url = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/AutoAbilities/AutoMedicNew.lua"
@@ -1996,9 +2014,51 @@ local function StartMedicChain()
 end
 
 function TDS:Rejoin()
-SmartTeleportToLobby()
+    SmartTeleportToLobby()
 end
 
+local AutoResetRunning = false
+local function StartAutoResetWatcher()
+    if AutoResetRunning then return end
+    AutoResetRunning = true
+
+    task.spawn(function()
+        while true do
+            task.wait(1)
+            if Globals.AutoReset and GameState == "GAME" then
+                local rewardsGui = PlayerGui:FindFirstChild("ReactGameNewRewards")
+                local frame = rewardsGui and rewardsGui:FindFirstChild("Frame")
+                local gameOver = frame and frame:FindFirstChild("gameOver")
+                
+                if gameOver and gameOver.Visible then
+                    local stateReplicators = ReplicatedStorage:FindFirstChild("StateReplicators")
+                    local gameStateReplicator = stateReplicators and stateReplicators:FindFirstChild("GameStateReplicator")
+                    
+                    if gameStateReplicator then
+                        local health = gameStateReplicator:GetAttribute("Health")
+                        if health ~= nil and health <= 0 then
+                            task.wait(2) 
+
+                            local remote = ReplicatedStorage:WaitForChild("RemoteFunction")
+                            local payload = {
+                                mode = "Trials",
+                                count = 1
+                            }
+                            
+                            pcall(function()
+                                return remote:InvokeServer("Multiplayer", "v2:start", payload)
+                            end)
+                            
+                            task.wait(10)
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+
+StartAutoResetWatcher()
 
 task.spawn(function()
     task.wait(2)
@@ -2044,7 +2104,7 @@ task.spawn(function()
             StartAutoReady()
         end
 
-         if Globals.AutoMedic and not AutoMedicRunning then
+        if Globals.AutoMedic and not AutoMedicRunning then
             StartMedicChain()
         end
 
