@@ -4,19 +4,19 @@
 
 return {
     trialScripts = {
-        ["Speedy Enemies"]    = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Speedy.lua", -- done
-        ["Glass"]             = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Glass.lua",
-        ["Quarantine"]        = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Quarantine.lua",
-        ["Fog"]               = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Fog.lua",
-        ["Limitation"]        = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Limitation.lua", -- done
-        ["Flying"]            = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Flying%20Enemies.lua", -- done
-        ["Jailed"]            = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Jailed.lua", -- done
-        ["Exploding Enemies"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Exploading%20Enemies.lua", -- done
-        ["Inflation"]         = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Inflation.lua", -- done 
-        ["Committed"]         = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Committed.lua", -- done
-        ["Hidden"]            = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Hidden%20Enemies.lua", -- done
-        ["Broke"]             = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Broke.lua", -- done 
-        ["Healthy Enemies"]   = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/StratsFunc/Healthy%20Enemies.lua", -- done
+        ["Speedy Enemies"]    = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Speedy.lua", -- done
+        ["Glass"]             = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Glass.lua",
+        ["Quarantine"]        = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Quarantine.lua",
+        ["Fog"]               = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Fog.lua",
+        ["Limitation"]        = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Limitation.lua", -- done
+        ["Flying"]            = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Flying.lua", -- done
+        ["Jailed"]            = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Jailed.lua", -- done
+        ["Exploding Enemies"] = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Exploading.lua", -- done
+        ["Inflation"]         = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Inflation.lua", -- done 
+        ["Committed"]         = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Committed.lua", -- done
+        ["Hidden"]            = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Hidden.lua", -- done
+        ["Broke"]             = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Broke.lua", -- done 
+        ["Healthy Enemies"]   = "https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/Standard/Healthy.lua", -- done
     },
 
     fallbackScripts = {
