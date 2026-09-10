@@ -8,7 +8,7 @@ TDS:Ready()
 
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
@@ -178,6 +178,7 @@ TDS:Place("Militant", -17.259981155395508, 0.4000051021575928, -21.1409263610839
 TDS:Place("Militant", -6.707752227783203, 0.4000048339366913, -28.441062927246094)
 TDS:Place("Militant", -3.3164098262786865, 0.4000047445297241, -28.370729446411133)
 TDS:Place("Militant", -0.25046873092651367, 0.4000090956687927, -28.16781234741211)
+Globals.AutoMedic = true
 TDS:Upgrade(21)
 TDS:Upgrade(20)
 TDS:Upgrade(19)
