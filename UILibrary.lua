@@ -2080,11 +2080,17 @@ local function StartAutoBack()
                     
                     if gameStateReplicator then
                         local health = gameStateReplicator:GetAttribute("Health")
-                        -- Trigger only on victory (health > 0) or specific end conditions, 
-                        -- and force a clean lobby teleport instead of a multiplay match payload restart.
+                        
                         if health ~= nil and health > 0 then
                             task.wait(3)
-                            SmartTeleportToLobby()
+                            
+                            local net = ReplicatedStorage:FindFirstChild("Network")
+                            local tp = net and net:FindFirstChild("Teleport")
+                            local re = tp and tp:FindFirstChild("RE:backToLobby")
+                            if re and re:IsA("RemoteEvent") then
+                                re:FireServer()
+                            end
+                            
                             task.wait(10)
                         end
                     end
@@ -2094,7 +2100,6 @@ local function StartAutoBack()
         AutoBackRunning = false
     end)
 end
-
 StartAutoResetWatcher()
 
 task.spawn(function()
