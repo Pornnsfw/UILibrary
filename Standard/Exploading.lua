@@ -9,7 +9,7 @@ TDS:Ready()
 
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
@@ -104,6 +104,8 @@ TDS:Upgrade(17)
 TDS:Upgrade(18)
 TDS:Upgrade(18)
 TDS:Upgrade(18)
+
+Globals.AutoMedic = true
 
 -- [ Wave 23 ] --
 --(15, 4)
