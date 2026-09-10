@@ -1,6 +1,6 @@
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
@@ -200,6 +200,7 @@ TDS:SetOption(29, "Trap", "Landmine")
 TDS:Upgrade(23)
 TDS:Upgrade(23)
 TDS:SetOption(23, "Trap", "Landmine")
+Globals.AutoMedic = true
 --
 --
 --
