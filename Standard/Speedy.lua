@@ -1,7 +1,7 @@
 
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
@@ -101,6 +101,7 @@ TDS:Upgrade(8)
 TDS:Upgrade(9)
 TDS:Upgrade(9)
 TDS:Upgrade(9)
+Globals.AutoMedic = true
 TDS:MedicSelect(7, 8)
 TDS:Place("Trapper", 20.455360412597656, 0.9999529123306274, 13.75526237487793)
 TDS:Place("Trapper", 17.327924728393555, 0.9999534487724304, 12.960105895996094)
