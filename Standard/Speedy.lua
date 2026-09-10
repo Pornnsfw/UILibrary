@@ -1,5 +1,6 @@
 
 local Globals = getgenv()
+Globals.AutoReady = false
 Globals.AutoMedic = true
 Globals.AutoReady = true
 Globals.AutoChain = true
