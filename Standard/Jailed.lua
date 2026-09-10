@@ -2,6 +2,17 @@
 
  local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
+TDS:Loadout("Assassin", "Scout", "Paintballer", "DJ Booth", "Gatling Gun")
+TDS:Mode("Trial")
+
+TDS:Place("Scout", 135.47198486328125, 2.0749998092651367, -47.1058349609375)
+TDS:Place("Paintballer", 137.87881469726562, 2.0749998092651367, -55.15132522583008)
+TDS:Place("Assassin", 138.0117950439453, 2.0749998092651367, -57.47431182861328)
+
+TDS:Loadout("Militant", "Crook Boss", "Mercenary Base", "DJ Booth", "Gatling Gun")
+
+TDS:Ready()
+
 local Globals = getgenv()
 Globals.AutoReady = false
 Globals.AutoMedic = true
@@ -14,17 +25,6 @@ Globals.AutoRejoin = true
 Globals.AutoMercenary = true
 Globals.AutoReset = true
 Globals.AutoBack = true
-
-TDS:Loadout("Assassin", "Scout", "Paintballer", "DJ Booth", "Gatling Gun")
-TDS:Mode("Trial")
-
-TDS:Place("Scout", 135.47198486328125, 2.0749998092651367, -47.1058349609375)
-TDS:Place("Paintballer", 137.87881469726562, 2.0749998092651367, -55.15132522583008)
-TDS:Place("Assassin", 138.0117950439453, 2.0749998092651367, -57.47431182861328)
-
-TDS:Loadout("Militant", "Crook Boss", "Mercenary Base", "DJ Booth", "Gatling Gun")
-
-TDS:Ready()
 
 -- [ Wave 1 ] --
 TDS:SetTarget(2, "Last")
