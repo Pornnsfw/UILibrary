@@ -118,6 +118,7 @@ TDS:Upgrade(2)
 TDS:Upgrade(5)
 TDS:Upgrade(5)
 TDS:Upgrade(5)
+Globals.AutoMedic = true
 --(13, 9)
 --(14, 9)
 --
