@@ -1,6 +1,12 @@
 
  local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
+TDS:Loadout("Ace Pilot", "DJ Booth", "Mercenary Base", "Medic", "Gatling Gun")
+TDS:Mode("Trial")
+
+TDS:Place("Ace Pilot", 19.152936935424805, 0.7499987483024597, 3.194467544555664)
+TDS:Ready()
+
 local Globals = getgenv()
 Globals.AutoReady = false
 Globals.AutoMedic = true
@@ -13,13 +19,6 @@ Globals.AutoRejoin = true
 Globals.AutoMercenary = true
 Globals.AutoReset = true
 Globals.AutoBack = true
-
-
-TDS:Loadout("Ace Pilot", "DJ Booth", "Mercenary Base", "Medic", "Gatling Gun")
-TDS:Mode("Trial")
-
-TDS:Place("Ace Pilot", 19.152936935424805, 0.7499987483024597, 3.194467544555664)
-TDS:Ready()
 
 -- [ Wave 1 ] --
 TDS:Ability(1, "Toggle Reverse")
