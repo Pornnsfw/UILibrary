@@ -10,7 +10,7 @@ TDS:Ready()
 
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
@@ -121,6 +121,7 @@ TDS:Upgrade(18)
 TDS:Upgrade(18)
 TDS:Upgrade(18)
 TDS:SetOption(18, "Unit 1", "Riot Guard")
+Globals.AutoMedic = true
 
 -- [ Wave 29 ] --
 TDS:SetOption(18, "Unit 2", "Riot Guard")
