@@ -1,5 +1,13 @@
  local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
+TDS:Loadout("Hacker", "Demoman", "Gatling Gun", "Scout", "Medic")
+TDS:Mode("Trial")
+
+TDS:Place("Scout", -60.45513153076172, 30.365568161010742, -50.352481842041016)
+TDS:Place("Scout", -66.44859313964844, 30.86126708984375, -26.16475486755371)
+TDS:Ready()
+TDS:Place("Scout", -60.73588562011719, 30.36585807800293, -53.430694580078125)
+
 
 local Globals = getgenv()
 Globals.AutoReady = false
@@ -13,14 +21,6 @@ Globals.AutoRejoin = true
 Globals.AutoMercenary = true
 Globals.AutoReset = true
 Globals.AutoBack = true
-
-TDS:Loadout("Hacker", "Demoman", "Gatling Gun", "Scout", "Medic")
-TDS:Mode("Trial")
-
-TDS:Place("Scout", -60.45513153076172, 30.365568161010742, -50.352481842041016)
-TDS:Place("Scout", -66.44859313964844, 30.86126708984375, -26.16475486755371)
-TDS:Place("Scout", -60.73588562011719, 30.36585807800293, -53.430694580078125)
-TDS:Ready()
 
 -- [ Wave 1 ] --
 TDS:Place("Scout", -64.09095764160156, 30.86126708984375, -24.255138397216797)
