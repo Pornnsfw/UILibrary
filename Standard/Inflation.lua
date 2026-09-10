@@ -2,6 +2,10 @@
 
  local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
+TDS:Loadout("DJ Booth", "Gatling Gun", "Medic", "Ace Pilot", "Trapper")
+TDS:Mode("Trial")
+TDS:Ready()
+
 local Globals = getgenv()
 Globals.AutoReady = false
 Globals.AutoMedic = true
@@ -15,9 +19,6 @@ Globals.AutoMercenary = true
 Globals.AutoReset = true
 Globals.AutoBack = true
 
-TDS:Loadout("DJ Booth", "Gatling Gun", "Medic", "Ace Pilot", "Trapper")
-TDS:Mode("Trial")
-TDS:Ready()
 
 -- [ Wave 1 ] --
 TDS:VoteSkip(1)
