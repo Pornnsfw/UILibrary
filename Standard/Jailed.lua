@@ -1,4 +1,5 @@
 local Globals = getgenv()
+Globals.AutoReady = false
 Globals.AutoMedic = true
 Globals.AutoReady = true
 Globals.AutoChain = true
@@ -20,6 +21,7 @@ TDS:Place("Paintballer", 137.87881469726562, 2.0749998092651367, -55.15132522583
 TDS:Place("Assassin", 138.0117950439453, 2.0749998092651367, -57.47431182861328)
 
 TDS:Loadout("Militant", "Crook Boss", "Mercenary Base", "DJ Booth", "Gatling Gun")
+
 TDS:Ready()
 
 -- [ Wave 1 ] --
