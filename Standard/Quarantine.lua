@@ -12,7 +12,7 @@ TDS:Ready()
 
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
