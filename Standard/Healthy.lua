@@ -9,7 +9,7 @@ TDS:Ready()
 
 local Globals = getgenv()
 Globals.AutoReady = false
-Globals.AutoMedic = true
+Globals.AutoMedic = false
 Globals.AutoReady = true
 Globals.AutoChain = true
 Globals.AutoGatling = true
@@ -153,6 +153,7 @@ TDS:SetTarget(19, "Last")
 TDS:SetTarget(19, "Strongest")
 TDS:SetTarget(19, "Weakest")
 TDS:SetTarget(19, "Closest")
+Globals.AutoMedic = true
 --
 --
 --
