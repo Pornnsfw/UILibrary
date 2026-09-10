@@ -85,7 +85,7 @@ local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local mouse = LocalPlayer:GetMouse()
 local RemoteFunc = ReplicatedStorage:WaitForChild("RemoteFunction")
 local RemoteEvent = ReplicatedStorage:WaitForChild("RemoteEvent")
-local FileName = "Api.json"
+local FileName = "API.json"
 local Logger
 local StartBackToLobby
 local platform = UserInputService:GetPlatform()
@@ -163,10 +163,6 @@ local MilMarker = nil
 local MercMarker = nil
 
 local CurrentEquippedTowers = {"None"}
-
-local StackEnabled = false
-local SelectedTower = nil
-local StackSphere = nil
 
 local AutoMedicRunning = false
 
@@ -1487,42 +1483,6 @@ local function StartAutoSkip()
     end)
 end
 
-local function StartClaimRewards()
-    if AutoClaimRewards or not Globals.ClaimRewards or GameState ~= "LOBBY" then 
-        return 
-    end
-
-    AutoClaimRewards = true
-
-    local player = game:GetService("Players").LocalPlayer
-    local network = game:GetService("ReplicatedStorage"):WaitForChild("Network")
-
-    local SpinTickets = player:WaitForChild("SpinTickets", 15)
-
-    if SpinTickets and SpinTickets.Value > 0 then
-        local TicketCount = SpinTickets.Value
-
-        local DailySpin = network:WaitForChild("DailySpin", 5)
-        local RedeemRemote = DailySpin and DailySpin:WaitForChild("RF:RedeemSpin", 5)
-
-        if RedeemRemote then
-            for i = 1, TicketCount do
-                RedeemRemote:InvokeServer()
-                task.wait(0.5)
-            end
-        end
-    end
-
-    for i = 1, 6 do
-        local args = { i }
-        network:WaitForChild("PlaytimeRewards"):WaitForChild("RF:ClaimReward"):InvokeServer(unpack(args))
-        task.wait(0.5)
-    end
-
-    game:GetService("ReplicatedStorage").Network.DailySpin["RF:RedeemReward"]:InvokeServer()
-    AutoClaimRewards = false
-end
-
 function StartBackToLobby()
     if GameState ~= "GAME" then return end
     if BackToLobbyRunning then return end
@@ -2157,10 +2117,6 @@ task.spawn(function()
         task.wait(1)
     end
 end)
-
-if Globals.ClaimRewards and not AutoClaimRewards then
-    StartClaimRewards()
-end
 
 MissionsUIFix()
 
