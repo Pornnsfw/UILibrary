@@ -1,3 +1,7 @@
+
+
+ local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
+
 local Globals = getgenv()
 Globals.AutoReady = false
 Globals.AutoMedic = true
@@ -10,8 +14,6 @@ Globals.AutoRejoin = true
 Globals.AutoMercenary = true
 Globals.AutoReset = true
 Globals.AutoBack = true
-
- local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
 TDS:Loadout("Militant", "Mercenary Base", "DJ Booth", "Medic", "Gatling Gun")
 TDS:Mode("Trial")
