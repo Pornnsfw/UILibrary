@@ -2,6 +2,12 @@
 
  local TDS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pornnsfw/UILibrary/refs/heads/main/UILibrary.lua"))()
 
+TDS:Loadout("Trapper", "Medic", "Gatling Gun", "Tesla", "Mercenary Base")
+TDS:Mode("Trial")
+
+TDS:Place("Trapper", -22.073307037353516, -1.3155207633972168, 0.3735170364379883)
+TDS:Ready()
+
 local Globals = getgenv()
 Globals.AutoReady = false
 Globals.AutoMedic = true
@@ -14,12 +20,6 @@ Globals.AutoRejoin = true
 Globals.AutoMercenary = true
 Globals.AutoReset = true
 Globals.AutoBack = true
-
-TDS:Loadout("Trapper", "Medic", "Gatling Gun", "Tesla", "Mercenary Base")
-TDS:Mode("Trial")
-
-TDS:Place("Trapper", -22.073307037353516, -1.3155207633972168, 0.3735170364379883)
-TDS:Ready()
 
 -- [ Wave 1 ] --
 TDS:VoteSkip(1)
