@@ -2078,9 +2078,11 @@ local function StartAutoBack()
                     
                     if gameStateReplicator then
                         local health = gameStateReplicator:GetAttribute("Health")
+                        -- Trigger only on victory (health > 0) or specific end conditions, 
+                        -- and force a clean lobby teleport instead of a multiplay match payload restart.
                         if health ~= nil and health > 0 then
-                            task.wait(2)
-                            TDS:Rejoin()
+                            task.wait(3)
+                            SmartTeleportToLobby()
                             task.wait(10)
                         end
                     end
