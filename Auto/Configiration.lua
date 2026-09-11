@@ -133,7 +133,7 @@ return {
     },
 
     -- Standard modes do not have a trial title, so fallback requirements stay separate.
-  FallbackConfigs = {
+   FallbackConfigs = {
     ["Easy"] = {
         Level = 175,
         Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
@@ -200,7 +200,7 @@ return {
             ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
         },
     },
-}
+},
     allTrialOptions = {
         "Exploding Enemies",
         "Fog",
