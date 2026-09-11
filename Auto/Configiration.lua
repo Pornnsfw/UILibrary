@@ -133,7 +133,7 @@ return {
     },
 
     -- Standard modes do not have a trial title, so fallback requirements stay separate.
-  local FallbackConfigs = {
+  FallbackConfigs = {
     ["Easy"] = {
         Level = 175,
         Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
