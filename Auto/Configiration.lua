@@ -133,51 +133,74 @@ return {
     },
 
     -- Standard modes do not have a trial title, so fallback requirements stay separate.
-    FallbackConfigs = {
-        ["Easy"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
-            Golden = {},
-            SkillTree = {},
-            Maps = {},
-        },
-        ["Casual"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
-            Golden = {},
-            SkillTree = {},
-            Maps = {},
-        },
-        ["Intermediate"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
-            Golden = {},
-            SkillTree = {},
-            Maps = {"Simplicity"},
-        },
-        ["Molten"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
-            Golden = {},
-            SkillTree = {},
-            Maps = {},
-        },
-        ["Fallen"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
-            Golden = {},
-            SkillTree = {},
-            Maps = {},
-        },
-        ["Frost"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
-            Golden = {},
-            SkillTree = {},
-            Maps = {},
+  local FallbackConfigs = {
+    ["Easy"] = {
+        Level = 175,
+        Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
+        Golden = {},
+        SkillTree = {},
+        Maps = {"Lay By", "Simplicity"},
+        Scripts = {
+            ["Lay By"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+            ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
         },
     },
-
+    ["Casual"] = {
+        Level = 175,
+        Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
+        Golden = {},
+        SkillTree = {},
+        Maps = {"Lay By", "Simplicity"},
+        Scripts = {
+            ["Lay By"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+            ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+        },
+    },
+    ["Intermediate"] = {
+        Level = 175,
+        Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
+        Golden = {},
+        SkillTree = {},
+        Maps = {"Simplicity", "Lay By"},
+        Scripts = {
+            ["Lay By"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+            ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+        },
+    },
+    ["Molten"] = {
+        Level = 175,
+        Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
+        Golden = {},
+        SkillTree = {},
+        Maps = {"Lay By", "Simplicity"},
+        Scripts = {
+            ["Lay By"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+            ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+        },
+    },
+    ["Fallen"] = {
+        Level = 175,
+        Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
+        Golden = {},
+        SkillTree = {},
+        Maps = {"Lay By", "Simplicity"},
+        Scripts = {
+            ["Lay By"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+            ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+        },
+    },
+    ["Frost"] = {
+        Level = 175,
+        Towers = {"Gatling Gun", "Trapper", "Medic", "DJ Booth", "Mercenary Base"},
+        Golden = {},
+        SkillTree = {},
+        Maps = {"Lay By", "Simplicity"},
+        Scripts = {
+            ["Lay By"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+            ["Simplicity"] = "https://raw.githubusercontent.com/AmonguszzZ/ModdedAether/refs/heads/main/Strats/Mode.lua",
+        },
+    },
+}
     allTrialOptions = {
         "Exploding Enemies",
         "Fog",
