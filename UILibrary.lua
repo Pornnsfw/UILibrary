@@ -535,11 +535,24 @@ local function StartAutoReady()
     task.spawn(function()
         local voteReplicator = ReplicatedStorage:WaitForChild("StateReplicators"):WaitForChild("VoteReplicator")
         
-        repeat task.wait(0.1) until voteReplicator:GetAttribute("Enabled") == true and voteReplicator:GetAttribute("Title") == "Ready?"
+        repeat 
+            task.wait(0.1) 
+            if not Globals.AutoReady then 
+                AutoReadyRunning = false
+                return 
+            end
+        until voteReplicator:GetAttribute("Enabled") == true and voteReplicator:GetAttribute("Title") == "Ready?"
         
+        if not Globals.AutoReady then
+            AutoReadyRunning = false
+            return
+        end
+
         RunVoteSkip()
         
-        repeat task.wait(0.1) until voteReplicator:GetAttribute("Enabled") == false
+        repeat 
+            task.wait(0.1) 
+        until voteReplicator:GetAttribute("Enabled") == false or not Globals.AutoReady
         
         AutoReadyRunning = false
     end)
@@ -1495,9 +1508,11 @@ function StartBackToLobby()
         
         if not gameStateReplicator or not voteReplicator then
             while true do
+                if not Globals.AutoRejoin and not Globals.AutoRestart then break end
                 pcall(HandlePostMatch)
                 task.wait(1)
             end
+            BackToLobbyRunning = false
             return
         end
 
@@ -1568,7 +1583,7 @@ function StartBackToLobby()
 end
 
 local function StartAntiLag()
-    if AntiLagRunning then return end
+    if AntiLagRunning or not Globals.AntiLag then return end
     AntiLagRunning = true
 
     local settings = settings().Rendering
@@ -1615,6 +1630,7 @@ local function StartAutoChain()
 
             if TowersFolder then
                 for _, towers in ipairs(TowersFolder:GetDescendants()) do
+                    if not Globals.AutoChain then break end
                     if towers:IsA("Folder") and towers.Name == "TowerReplicator"
                     and towers:GetAttribute("Name") == "Commander"
                     and towers:GetAttribute("OwnerId") == game.Players.LocalPlayer.UserId
@@ -1624,11 +1640,13 @@ local function StartAutoChain()
                 end
             end
 
+            if not Globals.AutoChain then break end
+
             if #commander >= 3 then
                 if idx > #commander then idx = 1 end
 
                 local CurrentCommander = commander[idx]
-                local replicator = CurrentCommander:FindFirstChild("TowerReplicator")
+                local replicator = CurrentCommander and CurrentCommander:FindFirstChild("TowerReplicator")
                 local UpgradeLevel = replicator and replicator:GetAttribute("Upgrade") or 0
 
                 if UpgradeLevel >= 4 and Globals.SupportCaravan then
@@ -1640,6 +1658,8 @@ local function StartAutoChain()
                     )
                     task.wait(0.1) 
                 end
+
+                if not Globals.AutoChain then break end
 
                 local response = RemoteFunc:InvokeServer(
                     "Troops",
@@ -1674,6 +1694,7 @@ local function StartAutoDjBooth()
 
             if TowersFolder then
                 for _, towers in ipairs(TowersFolder:GetDescendants()) do
+                    if not Globals.AutoDJ then break end
                     if towers:IsA("Folder") and towers.Name == "TowerReplicator"
                     and towers:GetAttribute("Name") == "DJ Booth"
                     and towers:GetAttribute("OwnerId") == game.Players.LocalPlayer.UserId
@@ -1682,6 +1703,8 @@ local function StartAutoDjBooth()
                     end
                 end
             end
+
+            if not Globals.AutoDJ then break end
 
             if DJ then
                 RemoteFunc:InvokeServer(
@@ -1712,6 +1735,7 @@ local function StartAutoNecro()
             return list
         end
         for _, rep in ipairs(towersFolder:GetDescendants()) do
+            if not Globals.AutoNecro then break end
             if rep:IsA("Folder") and rep.Name == "TowerReplicator"
             and rep:GetAttribute("Name") == "Necromancer"
             and rep:GetAttribute("OwnerId") == ownerId then
@@ -1771,6 +1795,7 @@ local function StartAutoNecro()
 
     local function cleanAllGraves(list)
         for _, necro in ipairs(list) do
+            if not Globals.AutoNecro then break end
             local rep = necro and necro:FindFirstChild("TowerReplicator")
             local store = rep and rep:FindFirstChild("GraveStone")
             if store then
@@ -1787,10 +1812,12 @@ local function StartAutoNecro()
             local necromancer = getNecros(TowersFolder)
             cleanAllGraves(necromancer)
 
+            if not Globals.AutoNecro then break end
+
             if #necromancer >= 1 then
                 if idx > #necromancer then idx = 1 end
                 local CurrentNecromancer = necromancer[idx]
-                local replicator = CurrentNecromancer:FindFirstChild("TowerReplicator")
+                local replicator = CurrentNecromancer and CurrentNecromancer:FindFirstChild("TowerReplicator")
 
                 local up = replicator and (replicator:GetAttribute("Upgrade") or 0) or 0
                 local graveStore = replicator and replicator:FindFirstChild("GraveStone")
@@ -1800,6 +1827,7 @@ local function StartAutoNecro()
                 local now = os.clock()
 
                 if maxGraves and graveCount >= maxGraves and (now - lastActivation >= debounce) then
+                    if not Globals.AutoNecro then break end
                     local response = RemoteFunc:InvokeServer(
                         "Troops",
                         "Abilities",
@@ -1827,7 +1855,7 @@ local function StartAutoNecro()
 end
 
 local function StartAutoMercenary()
-    if not Globals.AutoMercenary and not Globals.AutoMilitary then return end
+    if not Globals.AutoMercenary then return end
 
     if AutoMercenaryBaseRunning then return end
     AutoMercenaryBaseRunning = true
@@ -1838,6 +1866,7 @@ local function StartAutoMercenary()
 
             if TowersFolder then
                 for _, towers in ipairs(TowersFolder:GetDescendants()) do
+                    if not Globals.AutoMercenary then break end
                     if towers:IsA("Folder") and towers.Name == "TowerReplicator"
                     and towers:GetAttribute("Name") == "Mercenary Base"
                     and towers:GetAttribute("OwnerId") == game.Players.LocalPlayer.UserId
@@ -1883,6 +1912,7 @@ local function StartAutoMilitary()
             local TowersFolder = workspace:FindFirstChild("Towers")
             if TowersFolder then
                 for _, towers in ipairs(TowersFolder:GetDescendants()) do
+                    if not Globals.AutoMilitary then break end
                     if towers:IsA("Folder") and towers.Name == "TowerReplicator"
                     and towers:GetAttribute("Name") == "Military Base"
                     and towers:GetAttribute("OwnerId") == game.Players.LocalPlayer.UserId
@@ -1927,11 +1957,13 @@ local function StartMedicChain()
 
         local myMedics = {}
         repeat
+            if not Globals.AutoMedic then return end
             myMedics = {}
             local towersFolder = game:GetService("Workspace"):FindFirstChild("Towers")
             
             if towersFolder then
                 for _, tower in ipairs(towersFolder:GetChildren()) do
+                    if not Globals.AutoMedic then return end
                     local replicator = tower:FindFirstChild("TowerReplicator")
                     if replicator then
                         local ownerId = replicator:GetAttribute("OwnerId")
@@ -1942,7 +1974,6 @@ local function StartMedicChain()
                         local localPlayer = game:GetService("Players").LocalPlayer
                         local isOwner = (ownerId and ownerId == localPlayer.UserId) or (ownerName and ownerName == localPlayer.Name)
 
-                        -- Check if it's our Medic and its upgrade level is greater than 3
                         if isOwner and towerName and string.lower(towerName) == "medic" and upgradeLevel > 3 then
                             table.insert(myMedics, tower)
                         end
@@ -1953,7 +1984,7 @@ local function StartMedicChain()
             if #myMedics < 4 then
                 task.wait(1)
             end
-        until #myMedics >= 4 and Globals.AutoMedic
+        until #myMedics >= 4 or not Globals.AutoMedic
 
         if not Globals.AutoMedic then return end
 
@@ -1966,7 +1997,7 @@ local function StartMedicChain()
                 AutoMedicModule = loadedLib
             end
         end
-        if AutoMedicModule then
+        if AutoMedicModule and Globals.AutoMedic then
             AutoMedicModule.Chaining()
         end
     else
