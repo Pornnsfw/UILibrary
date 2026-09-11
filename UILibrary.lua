@@ -2093,6 +2093,17 @@ local function StartAutoBack()
 end
 StartAutoResetWatcher()
 
+function TDS:RemoveIndex()
+	self.PlacedTowers = {}
+    self.PlacedTraps = {}
+    self.MapInteractions = {}
+  
+    if UpgradeHistory then
+        table.clear(UpgradeHistory)
+    end
+	
+end
+
 task.spawn(function()
     task.wait(2)
     while true do
