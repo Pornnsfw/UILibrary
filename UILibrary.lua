@@ -1973,12 +1973,11 @@ local function StartMedicChain()
                         local ownerId = replicator:GetAttribute("OwnerId")
                         local ownerName = replicator:GetAttribute("OwnerName")
                         local towerName = replicator:GetAttribute("Name")
-                        local upgradeLevel = replicator:GetAttribute("Upgrade") or 0
 
                         local localPlayer = game:GetService("Players").LocalPlayer
                         local isOwner = (ownerId and ownerId == localPlayer.UserId) or (ownerName and ownerName == localPlayer.Name)
 
-                        if isOwner and towerName and string.lower(towerName) == "medic" and upgradeLevel > 3 then
+                        if isOwner and towerName and string.lower(towerName) == "medic" then
                             table.insert(myMedics, tower)
                         end
                     end
