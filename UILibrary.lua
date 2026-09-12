@@ -1,10 +1,5 @@
 local Globals = getgenv()
 
-if shared.TDSTable then
-    return shared.TDSTable
-end
-
-
 local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
 local GuiService = game:GetService("GuiService")
