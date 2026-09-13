@@ -59,7 +59,7 @@ return {
             Golden = {},
             SkillTree = {},
         },
-        ["Flying"] = {
+        ["Flying Enemies"] = {
             Level = 175,
             Towers = {"Militant", "Gatling Gun", "Medic", "Mercenary Base", "DJ Booth"}, -- no gold, no skill tree, no hardcore
             Golden = {},
@@ -102,12 +102,6 @@ return {
 				["Re-enforcements"] = 10,
 				["Extreme Conditioning"] = 25,
             },
-        },
-        ["Hidden"] = {
-            Level = 175,
-            Towers = {"Gatling Gun", "Medic", "Mercenary Base", "Militant", "DJ Booth"}, -- no gold, no skill tree, no hardcore
-            Golden = {},
-            SkillTree = {},
         },
         ["Broke"] = {
             Level = 175,
@@ -208,7 +202,7 @@ return {
         "Speedy Enemies",
         "Glass",
         "Limitation",
-        "Flying",
+        "Flying Enemies",
         "Jailed",
         "Inflation",
         "Committed",
